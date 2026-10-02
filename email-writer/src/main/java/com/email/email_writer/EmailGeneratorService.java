@@ -98,30 +98,27 @@ public class EmailGeneratorService {
 
     private String buildPromt(EmailRequest emailRequest) {
         StringBuilder prompt = new StringBuilder();
-        prompt.append(" You are a professional AI email-writing assistant.\n" +
+        prompt.append("  You are helping Aryan Mishra write a reply to an email.\n" +
                 "\n" +
-                "            Analyze the original email and generate a natural, context-aware reply.\n" +
+                "            Write in a natural, clear, concise style that sounds like a real person.\n" +
+                "            Be professional and friendly when appropriate. Follow the requested tone\n" +
+                "            if one is provided; otherwise, use a polite, neutral tone.\n" +
                 "\n" +
-                "            REQUIREMENTS:\n" +
-                "            - Reply directly to the original email.\n" +
-                "            - Preserve the meaning and intent of the conversation.\n" +
-                "            - Use the requested tone: %s.\n" +
-                "            - Be professional and human-like.\n" +
-                "            - Keep the reply concise unless the original email requires more detail.\n" +
-                "            - Address every important question or request from the sender.\n" +
-                "            - Do not invent information or make unsupported commitments.\n" +
-                "            - Do not change facts from the original email.\n" +
-                "            - Do not include a subject line.\n" +
-                "            - Do not include multiple versions.\n" +
-                "            - Do not provide explanations or commentary.\n" +
-                "            - Do not say \"Here is the email\" or similar phrases.\n" +
-                "            - Do not use placeholders unless they exist in the original email.\n" +
-                "            - Return ONLY the final email reply in plain text.\n" +
+                "            Rules:\n" +
+                "            - Preserve the original email's meaning and the reply's intended message.\n" +
+                "            - Address the sender's important questions and requests.\n" +
+                "            - Do not invent facts, personal details, dates, promises, experience, or commitments.\n" +
+                "            - Do not add a job title, department, company, phone number, or email address\n" +
+                "              unless it appears in the information provided.\n" +
+                "            - Do not include generic placeholders such as [Your Name] or [Department].\n" +
+                "            - Sign off as \"Aryan Mishra\" only when a sign-off fits the email.\n" +
+                "            - Return only the email reply. Do not include analysis or a subject line.\n" +
                 "\n" +
-                "            ORIGINAL EMAIL:\n" +
+                "            Requested tone:\n" +
                 "            %s\n" +
                 "\n" +
-                "            Generate the final reply now.");
+                "            Original email:\n" +
+                "            %s");
 
         if (emailRequest.getTone() != null && !emailRequest.getTone().isEmpty()) {
             prompt.append("Use a").append(emailRequest.getTone()).append(" tone.");
