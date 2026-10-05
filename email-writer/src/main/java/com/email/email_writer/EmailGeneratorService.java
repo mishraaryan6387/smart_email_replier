@@ -24,6 +24,7 @@ public class EmailGeneratorService {
     }
 
 
+
     public String generateEmailReply(EmailRequest emailRequest) throws Exception {
 
         // build a prompt

@@ -1,5 +1,7 @@
 console.log("%c Email Writer Assistant Content Script Loaded! ", "background: #222; color: #00ff00; font-size: 20px; font-weight: bold;");
 
+const API_BASE_URL = 'https://smart-email-replier-fakf.onrender.com';
+
 function getEmailContent() {
     const selectors = [
         '.adn.ads .a3s.aiL',
@@ -104,7 +106,7 @@ function injectButton() {
             const emailContent = getEmailContent();
             const selectedTone = toneDropdown ? toneDropdown.value : "matching the sender's tone";
 
-            const response = await fetch('http://localhost:8080/api/email/generate', {
+            const response = await fetch(`${API_BASE_URL}/api/email/generate`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

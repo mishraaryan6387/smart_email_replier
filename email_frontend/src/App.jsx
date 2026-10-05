@@ -3,6 +3,8 @@ import { Box, Button, Container, TextField, Typography, FormControl, InputLabel,
 import './App.css'
 import axios from 'axios'
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://smart-email-replier-fakf.onrender.com'
+
 function App() {
 
   const [emailContent, setEmailContent] = useState('')
@@ -13,7 +15,7 @@ function App() {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:8080/api/email/generate", {
+      const response = await axios.post(`${API_BASE_URL}/api/email/generate`, {
         emailContent,
         tone
       }
@@ -24,6 +26,7 @@ function App() {
 
     } catch (error) {
       console.error("Error generating reply:",error)
+      setGeneratedReply("Failed to generate reply. Please check the backend connection and try again.")
     }
     finally{
       setLoading(false)
